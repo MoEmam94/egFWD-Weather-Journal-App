@@ -1,6 +1,6 @@
 // Personal API Key for OpenWeatherMap API
 const baseUrl = `api.openweathermap.org/data/2.5/weather?q=`;
-const APIkey = '&appid=fc0d38d02b1c1159b57c2864dea86566';  
+const APIkey = '&appid=xxxxxxxxxxxxxxxx';  
 /* Global Variables */
 let userZipCode = document.getElementById('zip').value;
 let userFeeling = document.getElementById('feelings').value;
