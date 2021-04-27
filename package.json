@@ -1,0 +1,26 @@
+{
+  "name": "weatherjournalapp",
+  "version": "1.0.0",
+  "description": "egFWD 2nd Project Professional track",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoEmam94/egFWD-Weather-Journal-App.git"
+  },
+  "author": "Mohamed Emam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoEmam94/egFWD-Weather-Journal-App/issues"
+  },
+  "homepage": "https://github.com/MoEmam94/egFWD-Weather-Journal-App#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
