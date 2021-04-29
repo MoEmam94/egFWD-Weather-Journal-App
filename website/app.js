@@ -1,14 +1,16 @@
 // Personal API Key for OpenWeatherMap API
 let baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-let APIkey = ',US&appid=6f76c811c4a679443a3cec40829ff6a1';  
-/* Global Variables */
+let APIkey = ',US&appid=6f76c811c4a679443a3cec40829ff6a1';
+
+// Global Variables 
 const generateBtn = document.getElementById('generate');
 const dateEl =  document.getElementById('date');
 const tempEl =  document.getElementById('temp');
 const contentEl =  document.getElementById('content');
 const cityEl =  document.getElementById('city');
 const countryEl =  document.getElementById('country');
-/* Function to GET Web API Data*/
+
+// Function to GET Web API Data
 const getData = async (Url, zipCode, key) => {
     const res = await fetch(Url+zipCode+key);
     try {
@@ -20,16 +22,14 @@ const getData = async (Url, zipCode, key) => {
     }
 };
 
-
 // Function called by event listener
 const generateData = () => {
 let userZipCode = document.getElementById('zip').value;
 let userFeeling = document.getElementById('feelings').value;
-if (!/^[0-9]{5}(?:-[0-9]{4})?$/.test(userZipCode)) {
-    // alert('Please Enter a valid US Zipcode');
-    document.getElementById('alertZipCode').classList.remove('d-none');
+if (!/^[0-9]{5}(?:-[0-9]{4})?$/.test(userZipCode)) { //Checking for a valid US zipcode
+    document.getElementById('alertZipCode').classList.remove('d-none'); //Show Warning notification
 } else {
-    document.getElementById('alertZipCode').classList.add('d-none');
+    document.getElementById('alertZipCode').classList.add('d-none');  //Rehide Warning notification
     getData(baseUrl, userZipCode, APIkey)
     .then((data) => {
         console.log(data);
@@ -40,11 +40,10 @@ if (!/^[0-9]{5}(?:-[0-9]{4})?$/.test(userZipCode)) {
             date:newDate,
             city: data.name
             });
-        updateWebsite();
+        updateWebsite(); //Updates Website User Interface
     });
 }
 };
-
 
 // Event listener to add function to existing HTML DOM element
 generateBtn.addEventListener('click', generateData);
@@ -55,7 +54,7 @@ let d = new Date();
 let newDate = d.getMonth()+1 +'.'+ d.getDate()+'.'+ d.getFullYear();
 
 
-/* Function to POST data */
+// Function to POST data 
 const postData = async ( url = '', data = {})=>{
     const response = await fetch(url, {
     method: 'POST',
@@ -74,7 +73,7 @@ const postData = async ( url = '', data = {})=>{
     }
 };
 
-/* Function to GET Project Data */
+// Function to GET Project Data 
 async function updateWebsite() {
     const req = await fetch('/home');
     try {
@@ -88,26 +87,4 @@ async function updateWebsite() {
         } catch(err) {
     console.log(`Error: ${err}`);
     }
-};
-
-
-
-
-// Personal API Key for OpenWeatherMap API
-
-// Event listener to add function to existing HTML DOM element
-
-/* Function called by event listener */
-
-/* Function to GET Web API Data*/
-
-/* Function to POST data */
-
-
-
-/* Function to GET Project Data */
-// let userData = {
-//     temp: this.temp,
-//     date: this.date,
-//     feeling: this.feeling
-// }
+}
