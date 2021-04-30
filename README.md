@@ -18,6 +18,3 @@ The Weather Journal APP is the second project in Udacity's front-end Nanodegree,
 #### files are there just for reference
 * the comments only JS
 * The custom CSS file
-
-## Known bugs
-* the US flag emoji doesn't show up on PC!

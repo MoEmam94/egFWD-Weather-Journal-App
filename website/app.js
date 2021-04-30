@@ -1,6 +1,6 @@
 // Personal API Key for OpenWeatherMap API
 let baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=';
-let APIkey = ',US&appid=6f76c811c4a679443a3cec40829ff6a1';
+let APIkey = ',US&appid=6f76c811c4a679443a3cec40829ff6a1&units=metric';
 
 // Global Variables 
 const generateBtn = document.getElementById('generate');
@@ -33,14 +33,14 @@ if (!/^[0-9]{5}(?:-[0-9]{4})?$/.test(userZipCode)) { //Checking for a valid US z
     getData(baseUrl, userZipCode, APIkey)
     .then((data) => {
         console.log(data);
-        postData('/gettemp', {
+        postData('/addData', {
             country: data.sys.country,
             temp: data.main.temp,
             feeling: userFeeling,
             date:newDate,
             city: data.name
             });
-        updateWebsite(); //Updates Website User Interface
+        updateUI(); //Updates Website User Interface
     });
 }
 };
@@ -74,17 +74,17 @@ const postData = async ( url = '', data = {})=>{
 };
 
 // Function to GET Project Data 
-async function updateWebsite() {
-    const req = await fetch('/home');
+const updateUI = async() =>{
+    const request = await fetch('/all');
     try {
-        const userData = await req.json();
-        console.log(userData);
-        countryEl.innerHTML = `Country: ${userData[0].country} &#127482;&#127480`;
-        cityEl.innerHTML = `City: ${userData[0].city}`;
-        dateEl.innerHTML = `Date: ${userData[0].date}`;
-        tempEl.innerHTML = `Temperature: ${(((9/5) * (userData[0].temp - 273)) + 32).toFixed(0)} °F and ${(userData[0].temp - 273).toFixed(0)} °C`;
-        contentEl.innerHTML = `I'm feeling ${userData[0].feeling || 'nothing?!'}`;
-        } catch(err) {
-    console.log(`Error: ${err}`);
+        const allData = await request.json();
+        console.log(allData);
+        countryEl.innerHTML = `Country: ${allData.country}`;
+        cityEl.innerHTML = `City: ${allData.city}`;
+        dateEl.innerHTML = `Date: ${allData.date}`;
+        tempEl.innerHTML = `Temperature: ${allData.temp} °C   /   ${(allData.temp *(9/5)) + 32} °F`;
+        contentEl.innerHTML = `I feel: ${allData.feel || 'nothing?!'}`;
+    } catch(err){
+        console.log('error',err);
     }
-}
+};
